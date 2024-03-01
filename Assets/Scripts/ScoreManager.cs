@@ -13,6 +13,6 @@ public class ScoreManager : MonoBehaviour
     void Update()
     {
         score += scorePerSecond * Time.deltaTime;
-        scoreText.text = $"Score: {score.ToString("0000")}";
+        scoreText.text = $"Score: {score.ToString("00000")}";
     }
 }

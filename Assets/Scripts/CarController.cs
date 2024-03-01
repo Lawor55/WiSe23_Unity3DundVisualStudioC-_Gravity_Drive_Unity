@@ -27,7 +27,7 @@ public class CarController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        velocity = new Vector3(0, gravity * Time.deltaTime, 0);
+        velocity = new Vector3(0, gravity * Time.deltaTime * GameManager.gameSpeed, 0);
         //float maxYVelocity = Mathf.Clamp(velocity.y, -maxVelocity, maxVelocity);
         //velocity.y = maxYVelocity;
 

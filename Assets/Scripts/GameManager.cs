@@ -35,6 +35,8 @@ public class GameManager : MonoBehaviour
     private GameObject currentLevelModule;
     private GameObject lastLevelModule;
     public static bool gameOver = false;
+    //[SerializeField] AnimationCurve gameSpeed;
+    public static float gameSpeed;
 
 
     // Start is called before the first frame update
@@ -85,18 +87,9 @@ public class GameManager : MonoBehaviour
         else
         {
             //move the active levelModule over the screen
-            currentLevelModule.transform.position = new Vector3(currentLevelModule.transform.position.x - (mapSpeed * Time.deltaTime), mapParent.transform.position.y, mapParent.transform.position.z);
+            currentLevelModule.transform.position = new Vector3(currentLevelModule.transform.position.x - (mapSpeed * Time.deltaTime * gameSpeed), mapParent.transform.position.y, mapParent.transform.position.z);
         }
-
-        //if (Input.GetKeyDown(KeyCode.A))
-        //{
-        //    if (currentLevelModule != null)
-        //    {
-        //        currentLevelModule.SetActive(false);
-        //    }
-        //    GetNextLevelModule().SetActive(true);
-        //    currentLevelModule.transform.position = new Vector3(mostRightXPossible, mapParent.transform.position.y, mapParent.transform.position.z);
-        //}
+        GameSpeed();
     }
 
     private GameObject GetNextLevelModule()
@@ -109,7 +102,7 @@ public class GameManager : MonoBehaviour
             while (lastLevelModule.name == nameOfNextLevelModule)
             {
                 nameOfNextLevelModule = levelModuleNames[randomNumber++];
-                print(randomNumber);
+                //print(randomNumber);
                 if (randomNumber >= levelModuleNames.Count)
                 {
                     randomNumber = 0;
@@ -123,7 +116,7 @@ public class GameManager : MonoBehaviour
             {
                 currentLevelModule = levelModuleInScene;
                 lastLevelModule = currentLevelModule;
-                print($"Selected next Level Module name: {currentLevelModule.name}");
+                //print($"Selected next Level Module name: {currentLevelModule.name}");
                 return currentLevelModule;
             }
         }
@@ -136,5 +129,11 @@ public class GameManager : MonoBehaviour
         print("Game Over!");
         Time.timeScale = 0;
         gameOver = true;
+    }
+
+    private void GameSpeed()
+    {
+        gameSpeed = 1 + (ScoreManager.score / 1000);
+        print($"Gamespeed: {gameSpeed}\nTime since Start: {Time.realtimeSinceStartup}");
     }
 }

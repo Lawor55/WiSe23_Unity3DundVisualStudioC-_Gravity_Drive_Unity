@@ -7,7 +7,6 @@ public class NewBehaviourScript : MonoBehaviour
     [SerializeField] private float rotationSpeed;
     [SerializeField] private float gravity = -9.81f;
     //[SerializeField] private float maxVelocity;
-    private float carRotation;
     private bool flipped;
     private new Rigidbody rigidbody;
     private Transform carTransform;
@@ -31,16 +30,12 @@ public class NewBehaviourScript : MonoBehaviour
 
         if (flipped)
         {
-            //carRotation -= rotationSpeed * Time.deltaTime;
             rigidbody.velocity -= velocity;
         }
         else
         {
-            //carRotation += rotationSpeed * Time.deltaTime;
             rigidbody.velocity += velocity;
         }
-        //carRotation = Mathf.Clamp(carRotation, -165, -15);
-        //carTransform.rotation = Quaternion.Euler(new Vector3(0, 90, carRotation));
 
         if (Input.GetKeyDown(KeyCode.Space))
         {

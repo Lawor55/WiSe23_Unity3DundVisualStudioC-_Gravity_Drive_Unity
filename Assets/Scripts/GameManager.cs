@@ -34,6 +34,7 @@ public class GameManager : MonoBehaviour
     private GameObject mapParent;
     private GameObject currentLevelModule;
     private GameObject lastLevelModule;
+    public static bool gameOver = false;
 
 
     // Start is called before the first frame update
@@ -66,7 +67,13 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         //slowly reduce the fuel over time
-        fuelSlider.value -= fuelConsumptionPerSecond * Time.deltaTime;
+        fuel -= fuelConsumptionPerSecond * Time.deltaTime;
+        fuel = Mathf.Clamp(fuel, 0, 100);
+        fuelSlider.value = fuel;
+        if (fuel <=0 && !gameOver)
+        {
+            GameOver();
+        }
 
         //if the active LevelModule reaches its end position choose a new levelModule and enable it on the start position
         if (currentLevelModule.transform.position.x <= mostLeftXPossible)
@@ -122,5 +129,12 @@ public class GameManager : MonoBehaviour
         }
         Debug.LogError("No levelModule found!");
         return null;
+    }
+
+    public static void GameOver()
+    {
+        print("Game Over!");
+        Time.timeScale = 0;
+        gameOver = true;
     }
 }

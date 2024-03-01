@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1985109109458290127}
   - component: {fileID: 7233338589471413897}
+  - component: {fileID: 5582487315843634741}
+  - component: {fileID: 9143128110645914866}
   m_Layer: 0
   m_Name: Fuel
   m_TagString: Untagged
@@ -46,6 +48,49 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc294c1601c924f4b9a07efe52e88cf2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  percentageOfMaxFuelToAdd: 20
+--- !u!65 &5582487315843634741
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 299951995716528226}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.8, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!95 &9143128110645914866
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 299951995716528226}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 614151fd87bceda4b80a9f126aa74e9a, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &375449840026955350
 GameObject:
   m_ObjectHideFlags: 0
@@ -57,7 +102,6 @@ GameObject:
   - component: {fileID: 8552845332410734000}
   - component: {fileID: 8845090491614013920}
   - component: {fileID: 3378748031434532759}
-  - component: {fileID: 2132874522882428393}
   m_Layer: 0
   m_Name: Straw
   m_TagString: Untagged
@@ -130,27 +174,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &2132874522882428393
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 375449840026955350}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8237932757885234826
 GameObject:
   m_ObjectHideFlags: 0
@@ -162,7 +185,6 @@ GameObject:
   - component: {fileID: 1053587496953963195}
   - component: {fileID: 7323703923453382186}
   - component: {fileID: 1962018332832234145}
-  - component: {fileID: 3942103738577932564}
   m_Layer: 0
   m_Name: FuelTank
   m_TagString: Untagged
@@ -235,24 +257,3 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &3942103738577932564
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8237932757885234826}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}

@@ -970,6 +970,7 @@ GameObject:
   - component: {fileID: 372182106}
   - component: {fileID: 372182107}
   - component: {fileID: 372182105}
+  - component: {fileID: 372182108}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -989,20 +990,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26c8ca68d0e6f7e40941202821c87a14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fuelConsumptionPerSecond: 2
-  mapSpeed: 20
-  mostLeftXPossible: -30
-  mostRightXPossible: 30
-  levelModules:
-  - modulePrefab: {fileID: 2306815304892311121, guid: 7c892bbd8ed3dd0429da3b2ee4704232,
-      type: 3}
-    ammountToAdd: 5
-  - modulePrefab: {fileID: 4675680056719653402, guid: cd343825064100d409a3af9020c8cfe2,
-      type: 3}
-    ammountToAdd: 2
-  - modulePrefab: {fileID: 4675680056719653402, guid: 34e38774ca61f54448cdc9aaf0839ab5,
-      type: 3}
-    ammountToAdd: 3
+  fuelConsumptionPerSecond: -10
+  speedCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0.005242932
+      outSlope: 0.005242932
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.09352745
+    - serializedVersion: 3
+      time: 600
+      value: 3
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!4 &372182106
 Transform:
   m_ObjectHideFlags: 0
@@ -1032,6 +1044,33 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scoreText: {fileID: 166975174}
   scorePerSecond: 10
+  highscores: 3c000000320000000a0000001e0000005a0000004600000064000000500000001400000028000000
+  testHighscoreToAdd: 35
+--- !u!114 &372182108
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 372182104}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aaea382ac6328614b8bfadbd50570719, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mapSpeed: 10
+  mostLeftXPossible: -30
+  mostRightXPossible: 30
+  levelModules:
+  - modulePrefab: {fileID: 2306815304892311121, guid: 7c892bbd8ed3dd0429da3b2ee4704232,
+      type: 3}
+    ammountToAdd: 5
+  - modulePrefab: {fileID: 4675680056719653402, guid: cd343825064100d409a3af9020c8cfe2,
+      type: 3}
+    ammountToAdd: 3
+  - modulePrefab: {fileID: 4675680056719653402, guid: 34e38774ca61f54448cdc9aaf0839ab5,
+      type: 3}
+    ammountToAdd: 2
 --- !u!1 &438614036
 GameObject:
   m_ObjectHideFlags: 0

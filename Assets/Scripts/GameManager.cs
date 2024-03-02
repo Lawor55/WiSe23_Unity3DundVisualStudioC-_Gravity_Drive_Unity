@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -41,11 +42,13 @@ public class GameManager : MonoBehaviour
         GameSpeed();
     }
 
-    public static void GameOver()
+    public void GameOver()
     {
         print("Game Over!");
-        Time.timeScale = 0;
+        //Time.timeScale = 0;
         gameOver = true;
+        scoreManager.SaveHighscore();
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
     private void GameSpeed()

@@ -18,12 +18,12 @@ public class SoundManager : MonoBehaviour
     void Update()
     {
         //plays more calm part of song in the Highscore List
-        if (audioSource.time > 193 || audioSource.time < 186 && SceneManager.GetActiveScene().buildIndex == 1)
+        if (audioSource.time > 193 || audioSource.time < 186 && SceneManager.GetActiveScene().name == "HighScoreList")
         {
             audioSource.time = 186;
         }
         //loops the active part of the song for the gameplay
-        if (audioSource.time > 184 && SceneManager.GetActiveScene().buildIndex == 0)
+        if (audioSource.time > 184 && SceneManager.GetActiveScene().name == "MainScene")
         {
             audioSource.time = 44;
         }

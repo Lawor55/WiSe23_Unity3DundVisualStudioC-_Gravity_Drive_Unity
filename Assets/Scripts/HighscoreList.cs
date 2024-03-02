@@ -11,11 +11,21 @@ public class HighscoreList : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //int[] highscores = new int[10];
+        List<int> highscores = new();
         //Time.timeScale = 1;
         for (int i = 0; i < 10; i++)
         {
-            highscoreTexts[i].text = $"Score: {PlayerPrefs.GetInt($"Highscore{i}", 0).ToString("00000")}";
+            //highscores[i] = PlayerPrefs.GetInt($"Highscore{i}", 0);
+            highscores.Add(PlayerPrefs.GetInt($"Highscore{i}", 0));
+            highscoreTexts[i].text = $"Score {i + 1}: {highscores[i].ToString("00000")}";
         }
-        lastScore.text = $"Score: {PlayerPrefs.GetInt("LastScore", 0).ToString("00000")}";
+        int scoreLastRun = PlayerPrefs.GetInt("LastScore", 0);
+        lastScore.text = $"My Score: {scoreLastRun.ToString("00000")}";
+
+        if (highscores.Contains(scoreLastRun))
+        {
+            highscoreTexts[highscores.IndexOf(scoreLastRun)].textStyle = TMP_Settings.defaultStyleSheet.GetStyle("c3");
+        }
     }
 }

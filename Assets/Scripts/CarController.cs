@@ -14,6 +14,7 @@ public class CarController : MonoBehaviour
     private Animator animator;
     private Vector3 velocity;
     private SphereCollider frontOfCarCollider;
+    private GameManager gameManager;
 
     // Start is called before the first frame update
     void Start()
@@ -22,6 +23,7 @@ public class CarController : MonoBehaviour
         carTransform = transform.GetChild(0).transform;
         animator = GetComponentInChildren<Animator>();
         frontOfCarCollider = GetComponent<SphereCollider>();
+        gameManager = FindObjectOfType<GameManager>();
     }
 
     // Update is called once per frame
@@ -53,7 +55,7 @@ public class CarController : MonoBehaviour
     {
         if (collision.collider.GetType() == typeof(SphereCollider))
         {
-            GameManager.GameOver();
+            gameManager.GameOver();
         }
     }
 }

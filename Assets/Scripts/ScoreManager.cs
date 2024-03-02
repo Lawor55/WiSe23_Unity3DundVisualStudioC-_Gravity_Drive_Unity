@@ -8,7 +8,7 @@ public class ScoreManager : MonoBehaviour
     public static float score;
     [SerializeField] private TMP_Text scoreText;
     [SerializeField] [Range(1, 10)] public int scorePerSecond;
-    [SerializeField] private List<int> highscores = new();
+    private List<int> highscores = new();
     [SerializeField] private float testHighscoreToAdd;
 
     private void Start()
@@ -26,12 +26,15 @@ public class ScoreManager : MonoBehaviour
     void Update()
     {
         score += scorePerSecond * Time.deltaTime;
-        scoreText.text = $"Score: {score.ToString("00000")}";
+        scoreText.text = $"Score: {score:00000}";
     }
 
     public void SaveHighscore()
     {
-        highscores.Add(((int)score));
+        int currentScore = (int)score;
+        PlayerPrefs.SetInt("LastScore", currentScore);
+
+        highscores.Add(currentScore);
         highscores.Sort();
         highscores.Remove(0);
         highscores.Reverse();
@@ -40,5 +43,6 @@ public class ScoreManager : MonoBehaviour
         {
             PlayerPrefs.SetInt($"Highscore{i}", highscores[i]);
         }
+        PlayerPrefs.Save();
     }
 }

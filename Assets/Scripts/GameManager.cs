@@ -49,7 +49,7 @@ public class GameManager : MonoBehaviour
         gameOver = true;
         scoreManager.SaveHighscore();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.lockState = CursorLockMode.Confined;
     }
 
     private void GameSpeed()

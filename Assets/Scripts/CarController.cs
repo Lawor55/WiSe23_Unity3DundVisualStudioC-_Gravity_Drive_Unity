@@ -12,6 +12,7 @@ public class CarController : MonoBehaviour
     private Animator animator;
     private Vector3 velocity;
     private GameManager gameManager;
+    private SphereCollider frontCollider;
 
     // Start is called before the first frame update
     void Start()
@@ -19,6 +20,7 @@ public class CarController : MonoBehaviour
         rigidbody = GetComponent<Rigidbody>();
         animator = GetComponentInChildren<Animator>();
         gameManager = FindObjectOfType<GameManager>();
+        frontCollider = GetComponent<SphereCollider>();
     }
 
     // Update is called once per frame
@@ -51,10 +53,13 @@ public class CarController : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        ////causes a gameover when the players front collides with something
+        //causes a gameover when the players front collides with something
         //if (collision.collider.GetType() == typeof(SphereCollider))
-        //{
-        //    gameManager.GameOver();
-        //}
+        if (collision.contacts[0].thisCollider == frontCollider)
+        {
+            print(collision.contacts[0].thisCollider);
+            print(collision.gameObject.name);
+            gameManager.GameOver();
+        }
     }
 }

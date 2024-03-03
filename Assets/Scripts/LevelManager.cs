@@ -25,7 +25,7 @@ public class LevelManager : MonoBehaviour
     private List<GameObject> levelModulesInScene = new();
     private GameObject mapParent;
     //private GameObject currentLevelModule;
-    private GameObject lastLevelModule;
+    //private GameObject lastLevelModule;
 
     private List<GameObject> activeLevelModules = new();
 
@@ -48,6 +48,8 @@ public class LevelManager : MonoBehaviour
             levelModulesInScene.Add(gO);
             gO.SetActive(false);
         }
+        levelModuleNames = GenerateRandomLoop(levelModuleNames);
+
         //enable a first randomly selected levelModule so theres no null error in Update when trying to move
         while (activeLevelModules[activeLevelModules.Count - 1].transform.position.x + (activeLevelModules[activeLevelModules.Count - 1].transform.GetChild(0).transform.localScale.x / 2) < 42)
         {
@@ -120,12 +122,27 @@ public class LevelManager : MonoBehaviour
                 //currentLevelModule = levelModuleInScene;
                 activeLevelModules.Add(levelModuleInScene);
                 //lastLevelModule = currentLevelModule;
-                lastLevelModule = activeLevelModules[activeLevelModules.Count - 1];
+                //lastLevelModule = activeLevelModules[activeLevelModules.Count - 1];
                 //print($"Selected next Level Module name: {currentLevelModule.name}");
                 return;
             }
         }
         Debug.LogError("No levelModule found!");
         return;
+    }
+
+
+    //implemented Fisher-Yates Shuffle Algorithm from https://code-maze.com/csharp-randomize-list/
+    public List<string> GenerateRandomLoop(List<string> listToShuffle)
+    {
+        for (int i = listToShuffle.Count - 1; i > 0; i--)
+        {
+            //var k = _rand.Next(i + 1);
+            var k = Random.Range(0, i + 1);
+            var value = listToShuffle[k];
+            listToShuffle[k] = listToShuffle[i];
+            listToShuffle[i] = value;
+        }
+        return listToShuffle;
     }
 }

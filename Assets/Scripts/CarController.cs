@@ -6,23 +6,18 @@ public class CarController : MonoBehaviour
 {
     [SerializeField] private float rotationSpeed;
     [SerializeField] private float gravity = -9.81f;
-    [SerializeField] private LayerMask layerMask;
     //[SerializeField] private float maxVelocity;
     private bool flipped;
     private new Rigidbody rigidbody;
-    private Transform carTransform;
     private Animator animator;
     private Vector3 velocity;
-    private SphereCollider frontOfCarCollider;
     private GameManager gameManager;
 
     // Start is called before the first frame update
     void Start()
     {
         rigidbody = GetComponent<Rigidbody>();
-        carTransform = transform.GetChild(0).transform;
         animator = GetComponentInChildren<Animator>();
-        frontOfCarCollider = GetComponent<SphereCollider>();
         gameManager = FindObjectOfType<GameManager>();
     }
 
@@ -33,6 +28,7 @@ public class CarController : MonoBehaviour
         //float maxYVelocity = Mathf.Clamp(velocity.y, -maxVelocity, maxVelocity);
         //velocity.y = maxYVelocity;
 
+        //causes the player to fall upwards when the gravity gets flipped
         if (flipped)
         {
             rigidbody.velocity -= velocity;
@@ -45,7 +41,9 @@ public class CarController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             flipped = !flipped;
+            //activates the animation of the car flipping
             animator.SetBool("isFlipped", flipped);
+            //lowers the velocity down to enable a quicker flipping
             velocity = new Vector3(0, rigidbody.velocity.y / 3, 0);
             rigidbody.velocity = velocity;
         }
@@ -53,6 +51,7 @@ public class CarController : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        //causes a gameover when the players front collides with something
         if (collision.collider.GetType() == typeof(SphereCollider))
         {
             gameManager.GameOver();

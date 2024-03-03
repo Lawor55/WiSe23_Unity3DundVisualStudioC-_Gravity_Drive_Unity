@@ -51,10 +51,10 @@ public class CarController : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        //causes a gameover when the players front collides with something
-        if (collision.collider.GetType() == typeof(SphereCollider))
-        {
-            gameManager.GameOver();
-        }
+        ////causes a gameover when the players front collides with something
+        //if (collision.collider.GetType() == typeof(SphereCollider))
+        //{
+        //    gameManager.GameOver();
+        //}
     }
 }

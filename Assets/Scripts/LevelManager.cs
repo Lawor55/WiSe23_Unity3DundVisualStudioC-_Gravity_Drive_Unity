@@ -17,6 +17,8 @@ public class LevelManager : MonoBehaviour
     //all possible LevelModules and their chances
     [Header("Modules only get loaded at the start of the Game. Can not be modified at runtime.")]
     [SerializeField] private LevelModule[] levelModules;
+    [SerializeField] private GameObject firstStartObject;
+    //[SerializeField] private GameObject secondStartObject;
     //the names of each LevelModule multiplied with their chance
     private List<string> levelModuleNames = new();
     //one instance of each possible levelModule
@@ -32,7 +34,8 @@ public class LevelManager : MonoBehaviour
     {
         mapParent = new GameObject();
         mapParent.name = "Map_Parent";
-
+        activeLevelModules.Add(firstStartObject);
+        //activeLevelModules.Add(secondStartObject);
         foreach (var levelModule in levelModules)
         {
             for (int i = 0; i < levelModule.ammountToAdd; i++)
@@ -46,10 +49,14 @@ public class LevelManager : MonoBehaviour
             gO.SetActive(false);
         }
         //enable a first randomly selected levelModule so theres no null error in Update when trying to move
-        GetNextLevelModule();
-        levelModulesInScene[levelModulesInScene.Count - 1].SetActive(true);
-        float modulesSizeFromCenter = levelModulesInScene[levelModulesInScene.Count - 1].transform.GetChild(0).transform.localScale.x / 2;
-        levelModulesInScene[levelModulesInScene.Count - 1].transform.position = new Vector3(modulesSizeFromCenter, mapParent.transform.position.y, mapParent.transform.position.z);
+        while (activeLevelModules[activeLevelModules.Count - 1].transform.position.x + (activeLevelModules[activeLevelModules.Count - 1].transform.GetChild(0).transform.localScale.x / 2) < 42)
+        {
+            GetNextLevelModule();
+            activeLevelModules[activeLevelModules.Count - 1].SetActive(true);
+            float modulesSizeFromCenter = activeLevelModules[activeLevelModules.Count - 1].transform.GetChild(0).transform.localScale.x / 2;
+            activeLevelModules[activeLevelModules.Count - 1].transform.position = new Vector3(modulesSizeFromCenter + 42, mapParent.transform.position.y, mapParent.transform.position.z);
+            //print("Added more in Start");
+        }
         //currentLevelModule.transform.position = new Vector3(mostRightXPossible, mapParent.transform.position.y, mapParent.transform.position.z);
         //print($"Selected next Level Module name: {GetNextLevelModule()}");
     }
@@ -57,24 +64,27 @@ public class LevelManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-
         //if the active LevelModule reaches its end position choose a new levelModule and enable it on the start position
         //if (currentLevelModule.transform.position.x <= mostLeftXPossible)
-        if (levelModulesInScene[0].transform.position.x <= levelModulesInScene[0].transform.GetChild(0).transform.localScale.x / 2)
+        if (activeLevelModules[0].transform.position.x <= (-activeLevelModules[0].transform.GetChild(0).transform.localScale.x / 2) - 18)
         {
             //currentLevelModule.SetActive(false);
-            levelModulesInScene[0].SetActive(false);
+            activeLevelModules[0].SetActive(false);
+            activeLevelModules.RemoveAt(0);
+        }
+
+        if (activeLevelModules[activeLevelModules.Count - 1].transform.position.x + (activeLevelModules[activeLevelModules.Count - 1].transform.GetChild(0).transform.localScale.x / 2) < 42)
+        {
             GetNextLevelModule();
-            levelModulesInScene[levelModulesInScene.Count - 1].SetActive(true);
+            activeLevelModules[activeLevelModules.Count - 1].SetActive(true);
             //currentLevelModule.transform.position = new Vector3(mostRightXPossible, mapParent.transform.position.y, mapParent.transform.position.z);
-            levelModulesInScene[levelModulesInScene.Count-1].transform.position = new Vector3(levelModulesInScene[levelModulesInScene.Count - 1].transform.GetChild(0).transform.localScale.x / 2, mapParent.transform.position.y, mapParent.transform.position.z);
+            activeLevelModules[activeLevelModules.Count - 1].transform.position = new Vector3((activeLevelModules[activeLevelModules.Count - 1].transform.GetChild(0).transform.localScale.x / 2) + 42, mapParent.transform.position.y, mapParent.transform.position.z);
         }
         else
         {
             //move the active levelModule over the screen
             //currentLevelModule.transform.position = new Vector3(currentLevelModule.transform.position.x - (mapSpeed * Time.deltaTime * GameManager.gameSpeed), mapParent.transform.position.y, mapParent.transform.position.z);
-            foreach (var levelModule in levelModulesInScene)
+            foreach (var levelModule in activeLevelModules)
             {
                 levelModule.transform.position = new Vector3(levelModule.transform.position.x - (mapSpeed * Time.deltaTime * GameManager.gameSpeed), mapParent.transform.position.y, mapParent.transform.position.z);
             }
@@ -85,27 +95,32 @@ public class LevelManager : MonoBehaviour
         int randomNumber = Random.Range(0, levelModuleNames.Count - 1);
         //int randomNumber = 1;
         string nameOfNextLevelModule = levelModuleNames[randomNumber];
-        if (lastLevelModule != null)
+        bool matchFound;
+        do
         {
-            while (lastLevelModule.name == nameOfNextLevelModule)
+            matchFound = false;
+            foreach (var activeLevelModule in activeLevelModules)
             {
-                nameOfNextLevelModule = levelModuleNames[randomNumber++];
-                //print(randomNumber);
-                if (randomNumber >= levelModuleNames.Count)
+                if (activeLevelModule.name == nameOfNextLevelModule)
                 {
-                    randomNumber = 0;
+                    nameOfNextLevelModule = levelModuleNames[randomNumber++];
+                    if (randomNumber >= levelModuleNames.Count)
+                    {
+                        randomNumber = 0;
+                    }
+                    matchFound = true;
                 }
             }
-        }
+        } while (matchFound);
 
         foreach (var levelModuleInScene in levelModulesInScene)
         {
             if (levelModuleInScene.name == nameOfNextLevelModule)
             {
                 //currentLevelModule = levelModuleInScene;
-                levelModulesInScene.Add(levelModuleInScene);
+                activeLevelModules.Add(levelModuleInScene);
                 //lastLevelModule = currentLevelModule;
-                lastLevelModule = levelModulesInScene[levelModulesInScene.Count - 1];
+                lastLevelModule = activeLevelModules[activeLevelModules.Count - 1];
                 //print($"Selected next Level Module name: {currentLevelModule.name}");
                 return;
             }

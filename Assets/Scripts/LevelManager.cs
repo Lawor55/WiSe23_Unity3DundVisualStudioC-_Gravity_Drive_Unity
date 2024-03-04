@@ -79,6 +79,11 @@ public class LevelManager : MonoBehaviour
         {
             GetNextLevelModule();
             activeLevelModules[activeLevelModules.Count - 1].SetActive(true);
+            Fuel_Tank[] fuelTanks = activeLevelModules[activeLevelModules.Count - 1].GetComponentsInChildren<Fuel_Tank>();
+            foreach (var fuel_Tank in fuelTanks)
+            {
+                fuel_Tank.gameObject.SetActive(true);
+            }
             //currentLevelModule.transform.position = new Vector3(mostRightXPossible, mapParent.transform.position.y, mapParent.transform.position.z);
             activeLevelModules[activeLevelModules.Count - 1].transform.position = new Vector3((activeLevelModules[activeLevelModules.Count - 1].transform.GetChild(0).transform.localScale.x / 2) + 42, mapParent.transform.position.y, mapParent.transform.position.z);
         }

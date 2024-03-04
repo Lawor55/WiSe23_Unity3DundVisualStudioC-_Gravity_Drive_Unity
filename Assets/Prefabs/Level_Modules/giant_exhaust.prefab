@@ -1043,10 +1043,7 @@ PrefabInstance:
       propertyPath: m_Name
       value: vent_top
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 4793953851370366153, guid: d74b6cc13e7f2a949af313ca1e8df4b4, type: 3}
-    - {fileID: 5016277472003933000, guid: d74b6cc13e7f2a949af313ca1e8df4b4, type: 3}
-    - {fileID: 1146317377984765970, guid: d74b6cc13e7f2a949af313ca1e8df4b4, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -1372,10 +1369,7 @@ PrefabInstance:
       propertyPath: m_Name
       value: vent_down
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 4793953851370366153, guid: d74b6cc13e7f2a949af313ca1e8df4b4, type: 3}
-    - {fileID: 5016277472003933000, guid: d74b6cc13e7f2a949af313ca1e8df4b4, type: 3}
-    - {fileID: 1146317377984765970, guid: d74b6cc13e7f2a949af313ca1e8df4b4, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

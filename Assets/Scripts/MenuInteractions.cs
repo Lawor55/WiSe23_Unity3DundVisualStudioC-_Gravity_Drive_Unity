@@ -18,7 +18,10 @@ public class MenuInteractions : MonoBehaviour
         audioSource = FindObjectOfType<AudioSource>();
         musicVolume = PlayerPrefs.GetFloat("MusicVolume", 0.3f);
         audioSource.volume = musicVolume;
-        volumeSlider.value = musicVolume;
+        if (volumeSlider != null)
+        {
+            volumeSlider.value = musicVolume;
+        }
     }
 
     public void Restart()
@@ -40,6 +43,13 @@ public class MenuInteractions : MonoBehaviour
         musicVolume = newValue;
         PlayerPrefs.SetFloat("MusicVolume", musicVolume);
         audioSource.volume = musicVolume;
+    }
+
+    public void TitleScreen()
+    {
+        Destroy(audioSource.gameObject);
+        SceneManager.LoadScene("Titlescreen");
+        print("Restart!");
     }
 
     public void Quit()

@@ -69,7 +69,7 @@ public class CarController : MonoBehaviour
         //if (collision.collider.GetType() == typeof(SphereCollider))
         if (collision.contacts[0].thisCollider == frontCollider)
         {
-            //print(collision.contacts[0].thisCollider);
+            print(collision.contacts[0].thisCollider);
             print($"Died on: {collision.gameObject.name}");
             gameManager.GameOver();
         }

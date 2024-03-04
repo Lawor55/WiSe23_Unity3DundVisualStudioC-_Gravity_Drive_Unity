@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] [Range(-10f, 100f)] float fuelConsumptionPerSecond;
     private Slider fuelSlider;
 
-    public static bool gameOver = false;
+    public static bool gameOver;
     [SerializeField] private AnimationCurve speedCurve;
     private float timeSinceSceneRefresh;
     public static float gameSpeed;
@@ -22,11 +22,13 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        gameOver = false;
         fuelSlider = GameObject.Find("UI_Canvas").GetComponentInChildren<Slider>();
         //create a Parent object for all levelModules so its easier to understand hirachy
         scoreManager = GetComponent<ScoreManager>();
         //print($"Value 1: {speedCurve[0].value} Value 2: {speedCurve[1].value}");
         fuel = 100f;
+        SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
     // Update is called once per frame
@@ -41,6 +43,11 @@ public class GameManager : MonoBehaviour
             GameOver();
         }
         GameSpeed();
+    }
+
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        fuel = 100f;
     }
 
     public void GameOver()

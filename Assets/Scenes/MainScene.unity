@@ -1035,7 +1035,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26c8ca68d0e6f7e40941202821c87a14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fuelConsumptionPerSecond: 5
+  fuelConsumptionPerSecond: 3
   speedCurve:
     serializedVersion: 2
     m_Curve:

@@ -35,7 +35,7 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         //slowly reduce the fuel over time
-        fuel -= fuelConsumptionPerSecond * Time.deltaTime;
+        fuel -= fuelConsumptionPerSecond * Time.deltaTime * gameSpeed;
         fuel = Mathf.Clamp(fuel, 0, 100);
         fuelSlider.value = fuel;
         if (fuel <= 0 && !gameOver)

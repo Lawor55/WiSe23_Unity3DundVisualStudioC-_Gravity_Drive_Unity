@@ -1035,7 +1035,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26c8ca68d0e6f7e40941202821c87a14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fuelConsumptionPerSecond: 2
+  fuelConsumptionPerSecond: 5
   speedCurve:
     serializedVersion: 2
     m_Curve:
@@ -1049,8 +1049,8 @@ MonoBehaviour:
       inWeight: 0
       outWeight: 0.09352745
     - serializedVersion: 3
-      time: 600
-      value: 3
+      time: 300
+      value: 7
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -1421,7 +1421,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 122
-  m_CollisionDetection: 1
+  m_CollisionDetection: 2
 --- !u!1001 &567969607
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16425,8 +16425,8 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0.1, z: 2.5}
+  m_Radius: 0.35
+  m_Center: {x: 0, y: 0.1, z: 2.7}
 --- !u!23 &1702782535635008515
 MeshRenderer:
   m_ObjectHideFlags: 0

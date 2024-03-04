@@ -26,6 +26,7 @@ public class GameManager : MonoBehaviour
         //create a Parent object for all levelModules so its easier to understand hirachy
         scoreManager = GetComponent<ScoreManager>();
         //print($"Value 1: {speedCurve[0].value} Value 2: {speedCurve[1].value}");
+        fuel = 100f;
     }
 
     // Update is called once per frame

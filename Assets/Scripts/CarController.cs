@@ -51,14 +51,26 @@ public class CarController : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
+    //private void OnCollisionEnter(Collision collision)
+    //{
+    //    //causes a gameover when the players front collides with something
+    //    //if (collision.collider.GetType() == typeof(SphereCollider))
+    //    if (collision.contacts[0].thisCollider == frontCollider)
+    //    {
+    //        //print(collision.contacts[0].thisCollider);
+    //        print($"Died on: {collision.gameObject.name}");
+    //        gameManager.GameOver();
+    //    }
+    //}
+
+    private void OnCollisionStay(Collision collision)
     {
         //causes a gameover when the players front collides with something
         //if (collision.collider.GetType() == typeof(SphereCollider))
         if (collision.contacts[0].thisCollider == frontCollider)
         {
-            print(collision.contacts[0].thisCollider);
-            print(collision.gameObject.name);
+            //print(collision.contacts[0].thisCollider);
+            print($"Died on: {collision.gameObject.name}");
             gameManager.GameOver();
         }
     }

@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class CarController : MonoBehaviour
 {
-    [SerializeField] private float rotationSpeed;
     [SerializeField] private float gravity = -9.81f;
     //[SerializeField] private float maxVelocity;
     private bool flipped;
@@ -13,7 +12,6 @@ public class CarController : MonoBehaviour
     private Vector3 velocity;
     private GameManager gameManager;
     private SphereCollider frontCollider;
-    private AudioSource audioSource;
 
     // Start is called before the first frame update
     void Start()
@@ -22,7 +20,6 @@ public class CarController : MonoBehaviour
         animator = GetComponentInChildren<Animator>();
         gameManager = FindObjectOfType<GameManager>();
         frontCollider = GetComponent<SphereCollider>();
-        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -53,27 +50,14 @@ public class CarController : MonoBehaviour
         }
     }
 
-    //private void OnCollisionEnter(Collision collision)
-    //{
-    //    //causes a gameover when the players front collides with something
-    //    //if (collision.collider.GetType() == typeof(SphereCollider))
-    //    if (collision.contacts[0].thisCollider == frontCollider)
-    //    {
-    //        //print(collision.contacts[0].thisCollider);
-    //        print($"Died on: {collision.gameObject.name}");
-    //        gameManager.GameOver();
-    //    }
-    //}
-
     private void OnCollisionEnter(Collision collision)
     {
         //causes a gameover when the players front collides with something
         //if (collision.collider.GetType() == typeof(SphereCollider))
         if (collision.contacts[0].thisCollider == frontCollider)
         {
-            print(collision.contacts[0].thisCollider);
+            //print(collision.contacts[0].thisCollider);
             print($"Died on: {collision.gameObject.name}");
-            audioSource.Play();
             gameManager.GameOver();
         }
     }

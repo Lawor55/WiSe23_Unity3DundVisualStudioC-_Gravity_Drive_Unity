@@ -7,9 +7,8 @@ public class ScoreManager : MonoBehaviour
 {
     public static float score;
     [SerializeField] private TMP_Text scoreText;
-    [SerializeField] [Range(1, 10)] public int scorePerSecond;
+    [SerializeField] [Range(1, 10)] private int scorePerSecond;
     private List<int> highscores = new();
-    [SerializeField] private float testHighscoreToAdd;
 
     private void Start()
     {
@@ -19,8 +18,8 @@ public class ScoreManager : MonoBehaviour
             highscores.Add(PlayerPrefs.GetInt($"Highscore{i}", 0));
         }
 
-        highscores.Sort();
-        highscores.Reverse();
+        //highscores.Sort();
+        //highscores.Reverse();
     }
 
     // Update is called once per frame

@@ -64,7 +64,7 @@ public class MenuInteractions : MonoBehaviour
     public void TitleScreen()
     {
         audioSource.PlayOneShot(uiInteractionSound);
-        Destroy(audioSource.gameObject);
+        Destroy(audioSource.gameObject, 0.1f);
         SceneManager.LoadScene("Titlescreen");
         print("Restart!");
     }
